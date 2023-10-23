@@ -63,6 +63,12 @@ class KumbiaException extends Exception
     public static function handleException($e)
     {
         self::setStatus($e);
+        \Herramientas::monolog(
+            'KumbiaPHP',
+            APP_PATH.'tmp/kumbiaError.log',
+            $e->getMessage().' archivo:'.$e->getFile().' linea: '.$e->getLine(),
+            false
+        );
         if (PRODUCTION || self::untrustedIp()) {
             self::cleanBuffer();
             include APP_PATH.'views/_shared/errors/404.phtml';
