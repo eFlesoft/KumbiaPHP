@@ -257,7 +257,7 @@ class KumbiaView
         spl_autoload_register('kumbia_autoload_helper', true, true);
         // Mapea los atributos del controller en el scope
         extract($controller, EXTR_OVERWRITE);
-
+        //var_dump($controller);exit;
         // carga la vista si tiene view y no esta cacheada
         if (self::$_view && self::$_content === null) {
             // Carga el contenido del buffer de salida
