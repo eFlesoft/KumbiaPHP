@@ -235,9 +235,11 @@ class KumbiaView
     public static function render(Controller $controller)
     {
         if (!self::$_view && !self::$_template) {
-            ob_end_flush();
+            if (ob_get_level() > 0) {
+                ob_end_flush();
+            }
 
-            return; 
+            return;
         }
 
         // Guarda los datos del controlador y los envia

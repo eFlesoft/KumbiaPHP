@@ -63,7 +63,7 @@ class KumbiaException extends Exception
     public static function handleException($e)
     {
         self::setStatus($e);
-        if (PRODUCTION || self::untrustedIp()) {
+        if ((PRODUCTION || self::untrustedIp()) && $this->view != 'no_controller') {
             \Herramientas::monolog(
                 'KumbiaPHP',
                 APP_PATH.'tmp/kumbiaError.log',
